@@ -24,8 +24,7 @@ class QnAController extends Controller
             // $data = compact('subtes', 'kode_soal', 'nomer_soal');
             // $image = $this->qnAService->getImageQuestion($data);
             $list = $this->qnAService->getComments($data);
-            $replies = $this->qnAService->getReplies($data);
-            return view('tanya-jawab', ['list' => $list, 'replies' => $replies]);
+            return view('tanya-jawab', ['list' => $list]);
         } catch(\Exception $e){
             abort(404, 'Custom 404 error message');
         }
@@ -37,12 +36,17 @@ class QnAController extends Controller
             'comment'=>'required|max:256'
         ]);
         
-        //subtes_id, kode_soal, nomer_soal, user_id, parent_id
         $input = $request->all();
         $input['user_id'] = Auth::user()->id;
     
         Comments::create($input);
     
         return back();
+    }
+    
+    public function getReplies($id)
+    {
+        $replies = $this->qnAService->getReplies($id);
+        return json_encode($replies);
     }
 }

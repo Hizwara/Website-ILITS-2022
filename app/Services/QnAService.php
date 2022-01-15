@@ -31,14 +31,9 @@ class QnAService {
         return $list;
     }
 
-    public function getReplies($data){
-        // $subtes = $data['subtes'];
-        // $kode_soal = $data['kode_soal'];
-        // $nomer_soal = $data['nomer_soal'];
-        $replies = Comments::all();
-                // ->where('subtes', $subtes)
-                // ->where('kode_soal', '=', $kode_soal)
-                // ->where('nomer_soal', '=', $nomer_soal)
+    public function getReplies($data)
+    {
+        $replies = Comments::all()->where('parent_id', $data);
         return $replies;
     }
 }

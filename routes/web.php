@@ -109,7 +109,7 @@ Route::middleware('isadmin')->prefix('admin')->group(function () {
 });
 
 Route::get('/tanya-jawab', [QnAController::class, 'index'])->name('peserta.welcome.tanyaJawab');
-// Route::get('/tanya-jawab/{id}', [QnAController::class, 'index'])->name('peserta.welcome.getReply');
+Route::get('/tanya-jawab/{id}', [QnAController::class, 'getReplies'])->name('peserta.welcome.getReply');
 Route::post('/tanya-jawab', [QnAController::class, 'postComment'])->name('peserta.welcome.postComment');
 
 //Route untuk Peserta
