@@ -17,7 +17,7 @@
           aria-expanded="false">
           Dropdown button
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">          
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
@@ -146,12 +146,13 @@
         </div>
       </div>
     </div>
+    {{ $list->links() }}
     @endforeach
 
       {{-- List Comment (Paginations) --}}
-      {{-- {{ $list->links() }} --}}
 
-    <div class="card">
+
+    {{-- <div class="card">
       <div class="card-header">
         <div class="pl-2">
           <div class="d-flex flex-column">
@@ -212,7 +213,7 @@
       </div>
 
 
-    </div>
+    </div> --}}
 
   </div>
 @endsection

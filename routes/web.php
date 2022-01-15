@@ -74,10 +74,10 @@ Route::prefix('open-campus')->middleware('ispeserta')->group(function () {
 
     //ITS Fair
     // Route::prefix('its-fair')->group(function () {
-        // Route::get('register', [OpenCampusController::class, 'registerIF'])->name('open-campus.its-fair.register');
-        // Route::get('register/form', function(){return view('open-campus.its-fair-regist',["title" => "Form Pendaftaran"]);})->name('open-campus.its-fair.register-form');
-        // Route::post('register/form/store', [OpenCampusController::class, 'regisIFFormStore'])->name('open-campus.its-fair.register-form.store');
-        // Route::get('thank-you', [OpenCampusController::class, 'thxIF'])->name('open-campus.its-fair.thank-you');
+    // Route::get('register', [OpenCampusController::class, 'registerIF'])->name('open-campus.its-fair.register');
+    // Route::get('register/form', function(){return view('open-campus.its-fair-regist',["title" => "Form Pendaftaran"]);})->name('open-campus.its-fair.register-form');
+    // Route::post('register/form/store', [OpenCampusController::class, 'regisIFFormStore'])->name('open-campus.its-fair.register-form.store');
+    // Route::get('thank-you', [OpenCampusController::class, 'thxIF'])->name('open-campus.its-fair.thank-you');
     // });
 
     Route::prefix('odl')->group(function () {
@@ -110,6 +110,7 @@ Route::middleware('isadmin')->prefix('admin')->group(function () {
 
 Route::get('/tanya-jawab', [PesertaController::class, 'tanyaJawab'])->name('peserta.welcome.tanyaJawab');
 Route::post('/tanya-jawab', [QnAController::class, 'postComment'])->name('peserta.welcome.postComment');
+Route::get('/tanya-jawab/list', [QnAController::class, 'index'])->name('peserta.welcome.listComment');
 
 //Route untuk Peserta
 Route::prefix('peserta')->middleware('ispeserta')->group(function () {
