@@ -94,8 +94,8 @@
   </div>
 
   <div class="card">
-    <div class="post">
     @foreach ($list as $li)
+    <div class="post">
       <div class="card-header">
         <div class="pl-2">
           <div class="d-flex flex-column">
@@ -103,55 +103,63 @@
               <a href="#">{{ $li->name }}</a>
               <span><i class="fas fa-user-times"></i></span>
             </span>
-            <span class="description">7 Januari 2021 - 19.00</span>
+            <span class="description">{{ $li->created_at }}</span>
           </div>
         </div>
         <p>
             {{ $li->comment }}
         </p>
-        <span type="button" data-toggle="collapse" data-target="#drop-qna-0" aria-expanded="false"
+        @foreach ($replies as $reply)
+        @if ($li->comment == $reply->comment)
+        <span type="button" data-toggle="collapse" data-target="#drop-qna-{{ $reply->id }}" aria-expanded="false"
           aria-controls="drop-qna-0">
+          {{-- <a href="{{route('peserta.welcome.getReply', $reply->id)}}">Lihat komentar...</a> --}}
           Lihat komentar...
         </span>
       </div>
-      <div class="card-body collapse" id="drop-qna-0">
+      <div class="card-body collapse" id="drop-qna-{{ $reply->id }}">
+        @foreach ($replies as $rep)
+        @if ($reply->id == $rep->parent_id)      
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <div class="pl-2">
               <div class="d-flex flex-column">
-                <span class="username d-flex justify-content-between align-items-center">
-                  <a href="#">Jonathan Burke Jr.</a>
+                <span class="username d-flex justify-content-between align-items-center">             
+                  <a href="#">{{$rep->user_id}}</a>
                   <span class="badge badge-danger">Banned</span>
                 </span>
-                <span class="description">7 Januari 2021 - 19.00</span>
+                <span class="description">{{ $rep->created_at }}</span>
               </div>
             </div>
             <p>
-                Lorem ipsum represents a long-held tradition for designers,
-                typographers and the like. Some people hate it and argue for
-                its demise, but others ignore the hate as they create awesome
-                tools to help create filler text for everyone from bacon lovers
-                to Charlie Sheen fans.
+                {{$rep->comment}}
             </p>
           </li>
         </ul>
+        @endif  
+        @endforeach
+        
       </div>
       <div class="card-footer">
         <div class="form-group">
-          <form action="" method="post">
-            <textarea name="" id="" rows='1' class="form-control overflow-hidden" oninput="auto_grow(this)"
+          <form action="{{route('peserta.welcome.postComment')}}" method="post">
+          @csrf
+            <input type="hidden" name="parent_id" value="{{$reply->id}}">
+            <textarea name="comment" id="" rows='1' class="form-control overflow-hidden" oninput="auto_grow(this)"
               placeholder="Tulis tanggapanmnu di sini..."></textarea>
             <button type="submit" class="btn btn-primary w-100 mt-1">Kirim</button>
           </form>
         </div>
       </div>
     </div>
+    @endif
+    @endforeach
     @endforeach
 
       {{-- List Comment (Paginations) --}}
       {{-- {{ $list->links() }} --}}
 
-    <div class="card">
+    {{-- <div class="card">
       <div class="card-header">
         <div class="pl-2">
           <div class="d-flex flex-column">
@@ -212,7 +220,7 @@
       </div>
 
 
-    </div>
+    </div> --}}
 
   </div>
 @endsection

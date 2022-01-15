@@ -18,13 +18,14 @@ class QnAController extends Controller
     public function index(Request $request)
     {
         try{
-            $subtes = $request->subtes;
-            $kode_soal = $request->kode_soal;
-            $nomer_soal = $request->nomer_soal;
-            $data = compact('subtes', 'kode_soal', 'nomer_soal');
-            $image = $this->qnAService->getImageQuestion($data);
+            // $subtes = $request->subtes;
+            // $kode_soal = $request->kode_soal;
+            // $nomer_soal = $request->nomer_soal;
+            // $data = compact('subtes', 'kode_soal', 'nomer_soal');
+            // $image = $this->qnAService->getImageQuestion($data);
             $list = $this->qnAService->getComments($data);
-            return view('tanya-jawab');
+            $replies = $this->qnAService->getReplies($data);
+            return view('tanya-jawab', ['list' => $list, 'replies' => $replies]);
         } catch(\Exception $e){
             abort(404, 'Custom 404 error message');
         }

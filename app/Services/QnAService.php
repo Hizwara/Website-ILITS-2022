@@ -19,15 +19,26 @@ class QnAService {
     }
 
     public function getComments($data){
-        $subtes = $data['subtes'];
-        $kode_soal = $data['kode_soal'];
-        $nomer_soal = $data['nomer_soal'];
+        // $subtes = $data['subtes'];
+        // $kode_soal = $data['kode_soal'];
+        // $nomer_soal = $data['nomer_soal'];
         $list = Comments::join('users', 'comments.user_id', '=', 'users.id')
-                ->where('subtes', $subtes)
-                ->where('kode_soal', '=', $kode_soal)
-                ->where('nomer_soal', '=', $nomer_soal)
+                // ->where('subtes', $subtes)
+                // ->where('kode_soal', '=', $kode_soal)
+                // ->where('nomer_soal', '=', $nomer_soal)
                 ->where('parent_id', '=', null)
                 ->paginate(15);
         return $list;
+    }
+
+    public function getReplies($data){
+        // $subtes = $data['subtes'];
+        // $kode_soal = $data['kode_soal'];
+        // $nomer_soal = $data['nomer_soal'];
+        $replies = Comments::all();
+                // ->where('subtes', $subtes)
+                // ->where('kode_soal', '=', $kode_soal)
+                // ->where('nomer_soal', '=', $nomer_soal)
+        return $replies;
     }
 }
