@@ -12,8 +12,7 @@ class QnAService
         $subtes_id = $data['subtes_id'];
         $kode_soal = $data['kode_soal'];
         $nomer_soal = $data['nomer_soal'];
-        $getimage = Soal::select('link_gambar')
-            ->where('subtes_id', $subtes_id)
+        $getimage = Soal::where('subtes_id', '=', $subtes_id)
             ->where('kode_soal', '=', $kode_soal)
             ->where('nomer_soal', '=', $nomer_soal)
             ->first();
@@ -26,10 +25,9 @@ class QnAService
         $kode_soal = $data['kode_soal'];
         $nomer_soal = $data['nomer_soal'];
         $list = Comments::join('users', 'comments.user_id', '=', 'users.id')
-            ->where('subtes_id', $subtes_id)
+            ->where('subtes_id', '=', $subtes_id)
             ->where('kode_soal', '=', $kode_soal)
             ->where('nomer_soal', '=', $nomer_soal)
-            ->where('parent_id', '=', null)
             ->paginate(15);
         return $list;
     }

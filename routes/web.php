@@ -112,6 +112,7 @@ Route::get('/tanya-jawab', [PesertaController::class, 'tanyaJawab'])->name('pese
 Route::post('/tanya-jawab', [QnAController::class, 'postComment'])->name('peserta.welcome.postComment');
 Route::get('/tanya-jawab/list', [QnAController::class, 'index'])->name('peserta.welcome.listComment');
 
+
 //Route untuk Peserta
 Route::prefix('peserta')->middleware('ispeserta')->group(function () {
     Route::prefix('welcome')->group(function () {

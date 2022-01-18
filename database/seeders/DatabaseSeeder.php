@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             EventualSeeder::class,
             PrestasiSeeder::class,
             SubtesSeeder::class,
+            SoalSeeder::class,
         ]);
     }
 }

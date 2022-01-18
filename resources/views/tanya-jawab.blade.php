@@ -66,7 +66,7 @@
     </div>
     <div class="card-body">
         {{-- mendapatkan image --}}
-        <img src="../img/soal/{{$getImage}}" alt="">
+        <img src="../img/soal/{{$getimage->link_gambar}}" width="700px" height="500px" alt="">
       {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium eos voluptatibus tempore laudantium maxime
         autem totam illum doloremque error doloribus corporis iusto est laboriosam similique aspernatur quisquam at,
         tenetur aperiam?</p>
@@ -92,10 +92,10 @@
       </div>
     </div>
   </div>
-
+@foreach ($list as $li)
   <div class="card">
+
     <div class="post">
-    @foreach ($list as $li)
       <div class="card-header">
         <div class="pl-2">
           <div class="d-flex flex-column">
@@ -103,7 +103,7 @@
               <a href="#">{{ $li->name }}</a>
               <span><i class="fas fa-user-times"></i></span>
             </span>
-            <span class="description">7 Januari 2021 - 19.00</span>
+            <span class="description">{{ $li->created_at->format('d M Y - h.m') }}</span>
           </div>
         </div>
         <p>
@@ -145,77 +145,14 @@
           </form>
         </div>
       </div>
+
     </div>
-    {{ $list->links() }}
-    @endforeach
 
-      {{-- List Comment (Paginations) --}}
-
-
-    {{-- <div class="card">
-      <div class="card-header">
-        <div class="pl-2">
-          <div class="d-flex flex-column">
-            <span class="username d-flex justify-content-between align-items-center">
-              <a href="#">Jonathan Burke Jr.</a>
-              <span><i class="fas fa-user-times"></i></span>
-            </span>
-            <span class="description">7 Januari 2021 - 19.00</span>
-          </div>
-        </div>
-        <p>
-          pertnyaan 2
-        </p>
-        <span type="button" data-toggle="collapse" data-target="#drop-qna-0" aria-expanded="false"
-          aria-controls="drop-qna-0">
-          Lihat komentar...
-        </span>
-      </div>
-      <div class="card-body collapse" id="drop-qna-0">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="pl-2">
-              <div class="d-flex flex-column">
-                <span class="username d-flex justify-content-between align-items-center">
-                  <a href="#">Jonathan Burke Jr.</a>
-                  <span class="badge badge-danger">Banned</span>
-                </span>
-                <span class="description">7 Januari 2021 - 19.00</span>
-              </div>
-            </div>
-            <p>
-              jawaban 3
-            </p>
-          </li>
-          <li class="list-group-item">
-            <div class="pl-2">
-              <div class="d-flex flex-column">
-                <span class="username d-flex justify-content-between align-items-center">
-                  <a href="#">Jonathan Burke Jr.</a>
-                  <span><i class="fas fa-user-times"></i></span>
-                </span>
-                <span class="description">7 Januari 2021 - 19.00</span>
-              </div>
-            </div>
-            <p>
-              jawaban 4
-            </p>
-          </li>
-        </ul>
-      </div>
-      <div class="card-footer">
-        <div class="form-group">
-          <form action="" method="post">
-            <textarea name="comment" class="textarea rounded w-100" id="" rows="2" contenteditable placeholder="Tuliskan tanggapanmu disini"></textarea>
-            <button type="submit" class="btn btn-primary w-100 mt-1">Kirim</button>
-          </form>
-        </div>
-      </div>
-
-
-    </div> --}}
+     {{-- List Comment (Paginations) --}}
 
   </div>
+  @endforeach
+  {{ $list->links() }}
 @endsection
 
 @section('js')

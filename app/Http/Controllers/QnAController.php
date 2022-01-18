@@ -23,12 +23,15 @@ class QnAController extends Controller
             $kode_soal = $request->kode_soal;
             $nomer_soal = $request->nomer_soal;
             $data = compact('subtes_id', 'kode_soal', 'nomer_soal');
-            $image = $this->qnAService->getImageQuestion($data);
+            $getimage = $this->qnAService->getImageQuestion($data);
             $list = $this->qnAService->getComments($data);
-            return view('tanya-jawab', [
-                'image' => $image,
-                'list' => $list
-            ]);
+            return view(
+                'tanya-jawab',
+                [
+                    'getimage' => $getimage,
+                    'list' => $list
+                ]
+            );
         } catch (\Exception $e) {
             abort(404, 'Custom 404 error message');
         }
